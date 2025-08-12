@@ -35,135 +35,165 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    'Choose Your Bike',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF34C8E8),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            
-            // Main Promotional Card
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFF34C8E8), Color(0xFF4E4AF2)],
-                  ),
-                          borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF34C8E8).withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
-                ),
-                child: Stack(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Header
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Bike Image
-                    Positioned(
-                      right: 20,
-                      top: 20,
-                      child: Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(60),
-                        ),
-                        child: const Icon(
-                          Icons.directions_bike,
-                          size: 60,
-                          color: Colors.white,
-                        ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(
+                        Icons.person,
+                        color: Colors.white,
                       ),
                     ),
-                    // Discount Text
-                    Positioned(
-                      left: 20,
-                      bottom: 20,
-                      child: const Text(
-                        '30% Off',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    const Text(
+                      'Choose Your Bike',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF34C8E8),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(
+                        Icons.search,
+                        color: Colors.white,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-            
-            const SizedBox(height: 20),
-            
-            // Category Buttons
+
+              // Main Promotional Card
+              Transform(
+                transform: Matrix4.identity()
+                  ..rotateZ(0.5 * 3.14159 / 180)
+                  ..scale(1.02),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFF34C8E8), Color(0xFF4E4AF2)],
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF34C8E8).withOpacity(0.3),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        // Bike Image
+                        Positioned(
+                          right: 10,
+                          top: 10,
+                          child: Image.asset(
+                            'assets/bike.png',
+                            width: 140,
+                            height: 140,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        // Discount Text
+                        Positioned(
+                          left: 20,
+                          bottom: 20,
+                          child: const Text(
+                            '30% Off',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+                          // Category Buttons
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Row(
                 children: [
-                  _buildCategoryButton('All', true),
+                  Transform(
+                    transform: Matrix4.identity()
+                      ..rotateZ(1.0 * 3.14159 / 180)
+                      ..scale(1.05),
+                    child: _buildCategoryButton('All', true),
+                  ),
                   const SizedBox(width: 15),
-                  _buildCategoryButton('', false, icon: Icons.flash_on),
+                  Transform(
+                    transform: Matrix4.identity()
+                      ..rotateZ(-0.8 * 3.14159 / 180)
+                      ..scale(0.98),
+                    child: _buildCategoryButton('', false, icon: Icons.flash_on),
+                  ),
                   const SizedBox(width: 15),
-                  _buildCategoryButton('', false, icon: Icons.location_on),
+                  Transform(
+                    transform: Matrix4.identity()
+                      ..rotateZ(0.6 * 3.14159 / 180)
+                      ..scale(1.03),
+                    child: _buildCategoryButton('', false, icon: Icons.location_on),
+                  ),
                   const SizedBox(width: 15),
-                  _buildCategoryButton('', false, icon: Icons.terrain),
+                  Transform(
+                    transform: Matrix4.identity()
+                      ..rotateZ(-1.2 * 3.14159 / 180)
+                      ..scale(0.97),
+                    child: _buildCategoryButton('', false, icon: Icons.terrain),
+                  ),
                   const SizedBox(width: 15),
-                  _buildCategoryButton('', false, icon: Icons.sports_motorsports),
+                  Transform(
+                    transform: Matrix4.identity()
+                      ..rotateZ(0.4 * 3.14159 / 180)
+                      ..scale(1.01),
+                    child: _buildCategoryButton('', false, icon: Icons.sports_motorsports),
+                  ),
                 ],
               ),
             ),
-            
-            const SizedBox(height: 20),
-            
-            // Product Grid
-            Expanded(
-              child: Padding(
+
+              const SizedBox(height: 20),
+
+              // Rotated Widgets Section
+              _buildRotatedWidgets(),
+
+              const SizedBox(height: 20),
+
+              // Product Grid
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 15,
@@ -176,10 +206,10 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-            ),
-            
-            const SizedBox(height: 20),
-          ],
+
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
@@ -216,7 +246,7 @@ class _HomePageState extends State<HomePage> {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-        color: isSelected 
+        color: isSelected
           ? const Color(0xFF34C8E8)
           : Colors.white.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
@@ -247,112 +277,133 @@ class _HomePageState extends State<HomePage> {
         'subtitle': 'PEUGEOT - LR01',
         'price': '1,999.99',
         'image': 'assets/bike.png',
+        'isFavorite': true,
+        'rotation': 0.9,
+        'scale': 1.0,
       },
       {
         'title': 'Road Helmet',
         'subtitle': 'SMITH - Trade',
         'price': '120',
         'image': 'assets/bike.png',
+        'isFavorite': false,
+        'rotation': 0.9,
+        'scale': 0.95,
       },
       {
         'title': 'Mountain Bike',
         'subtitle': 'TREK - Fuel EX',
         'price': '2,499.99',
         'image': 'assets/bike.png',
+        'isFavorite': false,
+        'rotation': 0.9,
+        'scale': 1.0,
       },
       {
         'title': 'Electric Bike',
         'subtitle': 'SPECIALIZED - Turbo',
         'price': '3,999.99',
         'image': 'assets/bike.png',
+        'isFavorite': true,
+        'rotation': 0.9,
+        'scale': 0.95,
       },
     ];
 
     final data = productData[index];
-    
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFF1A1F2E),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header with heart icon
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(width: 20),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: const Color(0xFF34C8E8),
-                      width: 1,
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.favorite_border,
-                    color: Color(0xFF34C8E8),
-                    size: 16,
-                  ),
-                ),
-              ],
-            ),
-            
-            const SizedBox(height: 10),
-            
-            // Product Image - Conditional based on product type
-            Expanded(
-              child: Center(
-                child: data['title'].contains('Helmet') 
-                  ? _buildHelmetImage()
-                  : _buildBikeImage(),
-              ),
-            ),
-            
-            // Product Info
-            Text(
-              data['title'],
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.7),
-                fontSize: 12,
-              ),
-            ),
-            
-            const SizedBox(height: 5),
-            
-            Text(
-              data['subtitle'],
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            
-            const SizedBox(height: 10),
-            
-            Text(
-              '\$ ${data['price']}',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+
+    return Transform(
+      transform: Matrix4.identity()
+        ..rotateZ(data['rotation'] * 2 / 360)
+        ..scale(data['scale']),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF1A1F2E),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(0, 5),
             ),
           ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header with heart icon
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(width: 20),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: data['isFavorite']
+                        ? const Color(0xFF34C8E8).withOpacity(0.2)
+                        : Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: const Color(0xFF34C8E8),
+                        width: 1,
+                      ),
+                    ),
+                    child: Icon(
+                      data['isFavorite']
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                      color: const Color(0xFF34C8E8),
+                      size: 16,
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 10),
+
+              // Product Image - Conditional based on product type
+              Expanded(
+                child: Center(
+                  child: data['title'].contains('Helmet')
+                    ? _buildHelmetImage()
+                    : _buildBikeImage(),
+                ),
+              ),
+
+              // Product Info
+              Text(
+                data['title'],
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.7),
+                  fontSize: 12,
+                ),
+              ),
+
+              const SizedBox(height: 5),
+
+              Text(
+                data['subtitle'],
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              Text(
+                '\$ ${data['price']}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -362,74 +413,14 @@ class _HomePageState extends State<HomePage> {
     return Container(
       width: 100,
       height: 60,
-      child: Stack(
-        children: [
-          // Bike frame (white)
-          Positioned(
-            left: 20,
-            top: 20,
-            child: Container(
-              width: 60,
-              height: 20,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-          // Front wheel (black)
-          Positioned(
-            left: 15,
-            top: 35,
-            child: Container(
-              width: 20,
-              height: 20,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-          // Back wheel (black)
-          Positioned(
-            right: 15,
-            top: 35,
-            child: Container(
-              width: 20,
-              height: 20,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-          // Seat (brown/orange)
-          Positioned(
-            left: 25,
-            top: 15,
-            child: Container(
-              width: 8,
-              height: 8,
-              decoration: BoxDecoration(
-                color: const Color(0xFFD2691E),
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-          ),
-          // Handlebar (brown/orange)
-          Positioned(
-            right: 25,
-            top: 15,
-            child: Container(
-              width: 8,
-              height: 8,
-              decoration: BoxDecoration(
-                color: const Color(0xFFD2691E),
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-          ),
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.asset(
+          'assets/bike.png',
+          width: 80,
+          height: 50,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -440,16 +431,17 @@ class _HomePageState extends State<HomePage> {
       height: 60,
       child: Stack(
         children: [
-          // Helmet (white)
+          // Helmet (white) - using bike image as base
           Positioned(
             left: 20,
             top: 10,
-            child: Container(
-              width: 40,
-              height: 30,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/bike.png',
+                width: 40,
+                height: 30,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -502,34 +494,39 @@ class _HomePageState extends State<HomePage> {
             Positioned(
               left: 20,
               bottom: 0,
-              child: Container(
-                width: 60,
-                height: 70,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF34C8E8),
-                                   borderRadius: const BorderRadius.only(
-                   topLeft: Radius.circular(8),
-                   topRight: Radius.circular(8),
-                 ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.directions_bike,
-                      color: Colors.white,
-                      size: 24,
+              child: Transform(
+                transform: Matrix4.identity()
+                  ..rotateZ(2.0 * 3.14159 / 180)
+                  ..scale(1.08),
+                child: Container(
+                  width: 60,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF34C8E8),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'Bikes',
-                      style: TextStyle(
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.directions_bike,
                         color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                        size: 24,
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 4),
+                      Text(
+                        'Bikes',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -540,7 +537,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildNavItem(int index, IconData icon, String label) {
     final isSelected = _selectedIndex == index;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -555,7 +552,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Icon(
               icon,
-              color: isSelected 
+              color: isSelected
                 ? const Color(0xFF34C8E8)
                 : Colors.white.withOpacity(0.6),
               size: 24,
@@ -564,7 +561,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               label,
               style: TextStyle(
-                color: isSelected 
+                color: isSelected
                   ? const Color(0xFF34C8E8)
                   : Colors.white.withOpacity(0.6),
                 fontSize: 12,
@@ -573,6 +570,119 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  // Widget جديد يستخدم Transform.rotate مع زوايا مختلفة
+  Widget _buildRotatedWidgets() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        children: [
+          const Text(
+            'Rotated Elements',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+                    Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // عنصر مائل بزاوية 45 درجة
+              Transform(
+                transform: Matrix4.identity()
+                  ..rotateZ(1 * 3.14159 / 180)
+                  ..scale(0.95),
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF34C8E8),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.directions_bike,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+              
+              // عنصر مائل بزاوية -30 درجة
+              Transform(
+                transform: Matrix4.identity()
+                  ..rotateZ(1 * 3.14159 / 180)
+                  ..scale(0.9),
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4E4AF2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.flash_on,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+              
+              // عنصر مائل بزاوية 90 درجة
+              Transform(
+                transform: Matrix4.identity()
+                  ..rotateZ(1 * 3.14159 / 180)
+                  ..scale(0.8),
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD2691E),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.terrain,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+
+          // عنصر مائل بزاوية متغيرة
+          Transform(
+            transform: Matrix4.identity()
+              ..rotateZ(1 * 3.14159 / 180)
+              ..scale(1.05),
+            child: Container(
+              width: 120,
+              height: 40,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF34C8E8), Color(0xFF4E4AF2)],
+                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Center(
+                child: Text(
+                  'Rotated Text',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
